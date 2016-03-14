@@ -28,10 +28,28 @@ h1 {
   L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', 
   {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
- maxZoom: 20,
+ 
       minZoom: 1
     }).addTo(map);
     
+var myGeoJSON = {
+	‘type’ : ‘FeatureCollection’,
+	‘features’ : [
+		{'type':'Feature', 
+'properties':{
+'name':'New York, New York',
+‘caption’:'I was born near here.',
+‘img’:'<img src='none/>’},
+'geometry':{'type':'Point','coordinates':[40.4246,-74.0021]}},
+
+{'type':'Feature',
+ 'properties':{
+'name':'Los Angeles, California',
+‘caption’:'no one ever said forever leaves you any time'
+‘img’:'<img src='https://www.ego4u.com/images/countries/usa/los-angeles.jpg'/>’},
+'geometry':{'type':'Point','coordinates':[34.03,-118.15]}}
+
+	]}
 
     
   </script>
