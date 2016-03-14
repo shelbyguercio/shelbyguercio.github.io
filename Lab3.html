@@ -1,0 +1,59 @@
+<html>
+<head>
+	<style>
+body {
+    background-color: lightblue;
+}
+h1 {
+    color: maroon;
+    margin-left: 40px;
+} 
+</style>
+  <h1>10 Most Populated States in America</h1>
+  <p>By Shelby Guercio, March 2016</p>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <style>
+    #map{ height: 82% }
+    
+  </style>
+</head>
+<body>
+<p class="solid">	
+
+  <div id="map"></div>
+
+  <script>
+  // initialize the map
+  var map = L.map('map').setView([36.7663942, -92.8317745], 5);
+  // load a tile layer
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+      maxZoom: 20,
+      minZoom: 1
+    }).addTo(map);
+    
+var myGeoJSON = {
+	‘type’ : ‘FeatureCollection’,
+	‘features’ : [
+		{'type':'Feature', 
+'properties':{
+'name':'myPlace1',
+‘caption’:'this is the body text',
+‘img’:’<img src=”http://link/to/source.jpg”/>’},
+'geometry':{'type':'Point','coordinates':[-75.1474139, 39.9816609]}},
+{'type':'Feature',
+ 'properties':{
+'name':'myPlace2',
+‘caption’:'this is ALSO the body text'
+‘img’:’<img src=”http://link/to/source.jpg”/>’},
+'geometry':{'type':'Point','coordinates':[-75.1474439, 39.9716709]}}
+
+	]};
+
+    
+  </script>
+ 
+</body>
+</html>
