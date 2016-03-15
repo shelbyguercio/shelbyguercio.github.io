@@ -34,9 +34,46 @@ h1 {
       minZoom: 1
     }).addTo(map);
     
-L.marker([40.7820214,-73.9742043]).addTo(map)
-    .bindPopup("<b>1. New York, New York</b><br>With about 8.5 million residents, the Big Apple is the country's most populated city. It was founded in 1624 as a Dutch trading post located right on the Hudson River. Ellis Island and the Statue of Liberty greeted millions of immigrants from 1892 to 1954. The NYC tri-state is the #1 place in the country to get Italian food. <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Antiguo_vs_Moderno_(4432379954).jpg/170px-Antiguo_vs_Moderno_(4432379954).jpg'/>")
-    .openPopup();
+    L.geoJson(geojsonFeature).addTo(map);
+    
+    var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+
+L.geoJson(someGeojsonFeature, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+}).addTo(map);
+function onEachFeature(feature, layer) {
+    // does this feature have a property named popupContent?
+    if (feature.properties && feature.properties.popupContent) {
+        layer.bindPopup(feature.properties.popupContent);
+    }
+}
+
+var geojsonFeature = {
+    "type": "Feature",
+    "properties": {
+        "name": "<b>1. New York, New York",
+        "Population": "8,491,079",
+        "popupContent": "I was born near here!"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [40.7820214,-73.9742043]
+    }
+};
+
+L.geoJson(geojsonFeature, {
+    onEachFeature: onEachFeature
+}).addTo(map);
+    
 	
 L.marker([34.0422894,-118.2490746]).addTo(map)
     .bindPopup("<b>2. Los Angeles, California</b><br>Los Angeles is the most populated city in California,and the second-most populated in the United States with a current estimated population of about 3.8 million people. With a complicated history of being fought over between Native Americans, the Spanish, and Mexico, it finally became a part of the United States in 1848 with the rest of the state. <img src='https://www.ego4u.com/images/countries/usa/los-angeles.jpg'/>")
