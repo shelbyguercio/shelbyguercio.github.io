@@ -45,7 +45,7 @@ h1 {
     fillOpacity: 0.8
 };
 
-L.geoJson(someGeojsonFeature, {
+L.geoJson(name, {
     pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, geojsonMarkerOptions);
     }
@@ -60,7 +60,7 @@ function onEachFeature(feature, layer) {
 var geojsonFeature = {
     "type": "Feature",
     "properties": {
-        "name": "<b>1. New York, New York",
+        "name": "<b>1. New York, New York</b>",
         "Population": "8,491,079",
         "popupContent": "I was born near here!"
     },
