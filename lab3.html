@@ -45,7 +45,7 @@ h1 {
     fillOpacity: 0.8
 };
 
-L.geoJson(name, {
+L.geoJson(feature, {
     pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, geojsonMarkerOptions);
     }
