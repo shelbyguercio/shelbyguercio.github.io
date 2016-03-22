@@ -1,272 +1,239 @@
-<!DOCTYPE html>
-	<html>
-		<head>
-			<title>10 Most Populated Cities in The United States</title>
-			<meta charset="utf-8" />
-			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-			<link rel="stylesheet" type="text/css" href="css/own_style.css">
-			<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-			<script src="js/leaflet-hash.js"></script>
-			<script src="js/Autolinker.min.js"></script>
-		<style>
-		.leaflet-popup-content-wrapper {
-		 background: #e93434;}
-		</style>
-		</head>
-		<body>
-			<div id="map"></div>
-			<script src="data/exp_muralsall.js"></script>
-			<script>
-			var map = L.map('map', {
-				zoomControl:true, maxZoom:16, minZoom: 10,
-				maxBounds: [[39.88, -75.24],[40.04, -75.08]]
-			})
-			.fitBounds([[40.687661,-125.637793],[35.520627,-65.537279]])
-			.setView([38.0258935, -94.2353115], 4.5);
-			
-			var hash = new L.Hash(map);
-			var additional_attrib = 'created with lots of help from <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
-			var feature_group = new L.featureGroup([]);
-			var raster_group = new L.LayerGroup([]);
-			var basemap_0 = L.tileLayer('http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.png', { 
-				attribution: additional_attrib + 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data: &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-			});	
-			basemap_0.addTo(map);	
-			var layerOrder=new Array();
-			
-			
-			function pop_muralsall(feature, layer) {					
-				var popupContent = '<table><tr><th scope="row">ID</th><td>' + Autolinker.link(String(feature.properties['ID'])) +  '</td></tr><tr><th scope="row">Work Name</th><td>' + Autolinker.link(String(feature.properties['Work_Name'])) + '</td></tr><tr><th scope="row">Address</th><td>' + Autolinker.link(String(feature.properties['address'])) + '</td></tr></table>';
-				layer.bindPopup(popupContent);
-			}
-	
-				var exp_muralsallJSON = new L.geoJson(exp_muralsall,{
-					onEachFeature: pop_muralsall,
-					pointToLayer: function (feature, latlng) {  
-						return L.circleMarker(latlng, {
-							radius: 4.0,
-							fillColor: '#925f92',
-							color: '#000000',
-							weight: 1,
-							opacity: 1.0,
-							fillOpacity: 1.0
-						})
-					}
-				});
-			
-	function onEachFeature(feature, layer) {
-	       popupOptions = {maxWidth: 120};
-	        if (feature.properties && feature.properties.Name) {
-	        layer.bindPopup(feature.properties.url + "<br>" + feature.properties.Name, popupOptions);
-	    }
-		}	
+<html>
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+</head>
+<body>
+
+<style>
+.leaflet-popup-content-wrapper {
+	 background: #f1f3f4;}
+body{background-color:#f9fafb;
+}
+p1{font-family:century gothic; font-size:32px;
+}
+p2{font-family:verdana; font-size:20px;
+}
+</style>
+
+<center>
+<p1><font color = "#c9a13b">10 Most Populated Cities in the United States</font></p2><br>
+<p2><font color = "black">10 cities tbh</font></p2><br>
+ 
+ <div id = 'map' style="height: 900px;width: 1900px;"></div>
+
+<script>
+//intialize the map
+var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',{
+  		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+	});
 		
-		var geoJsonAL = [
-	  {
-	 "type": "FeatureCollection",
-	  "features": [
-	   
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 2,
-	        "Name": "Summer Kaleidoscope",
-	        "url": "<img src='http://muralarts.org/sites/default/files/imagecache/mural_single/2015-085_Summer_Kaleidoscope_01_0.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.178577,
-	          39.963808
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 3,
-	        "Name": "Peace Wall",
-	        "url": "<img src='http://muralarts.org/sites/default/files/peace_0.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.192319,
-	          39.937113
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 4,
-	        "Name": "Micro to Macro",
-	        "url":  "<img src='http://muralarts.org/sites/default/files/2013-032_Micro_Macro_08.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.194604,
-	          39.966153
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 5,
-	        "Name": "Healing Walls",
-	        "url":  "<img src='http://muralarts.org/sites/default/files/healing%20walls%20north%20S.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.147042,
-	          39.998849
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 6,
-	        "Name": "Restored Spaces - Room For Growth",
-	        "url":  "<img src='http://muralarts.org/sites/default/files/cshead.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.228402,
-	          39.975688
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 7,
-	        "Name": "The Rise and Shine murals",
-	        "url": "<img src='http://muralarts.org/sites/default/files/2013-055_NPBP_Temple_2.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.154318,
-	          39.994536
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 8,
-	        "Name": "'We the Youth' by Keith Haring",
-	        "url": "<img src='http://muralarts.org/sites/default/files/WeTheYouth_1.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.179902,
-	          39.938588
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 9,
-	        "Name": "Holding Grandmother's Quilt",
-	        "url": "<img src='http://muralarts.org/sites/default/files/quilt.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.201231,
-	          39.966318
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 10,
-	        "Name": "Love Letter Train Tour",
-	        "url": "<img src='pictures/images.png' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.224936,
-	          39.960064
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 11,
-	        "Name": "Metamorphosis",
-	        "url": "<img src='https://scontent-lga3-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/430527_10150719401753615_1192568948_n.jpg?oh=b49111bf517bde201e4395a7ae0e0fb8&oe=5734EA0A' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.187488,
-	          39.974925
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 12,
-	        "Name": "In Nature Nothing Exists Alone",
-	        "url": "<img src='http://muralarts.org/sites/default/files/zooh.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.196619,
-	          39.974677
-	        ]
-	      }
-	    },
-	    {
-	      "type": "Feature",
-	      "properties": {
-	        "OBJECTID": 13,
-	        "Name": "Philadelphia on an Half Tank",
-	        "url": "<img src='http://muralarts.org/sites/default/files/Philadelphia%20on%20a%20Half%20Tank.jpg' height=100 width=100 />"
-	      },
-	      "geometry": {
-	        "type": "Point",
-	        "coordinates": [
-	          -75.196838,
-	          39.905595
-	        ]
-	      }
-	    }
-	  ]
-	}
-	  ];
-	  		feature_group.addTo(map);
-			var title = new L.Control();
-			title.onAdd = function (map) {
-				this._div = L.DomUtil.create('div', 'info');
-				this.update();
-				return this._div;
-			};
-			title.update = function () {
-				this._div.innerHTML = '<h2>Philadelphia Mural Locations</h2>Lab 3'
-			};
-			title.addTo(map);
-		
-			var baseMaps = {
-			'Stamen Watercolor': basemap_0	};
-			L.control.layers(baseMaps,{"All Murals": exp_muralsallJSON},{collapsed:false}).addTo(map);
-				L.geoJson(geoJsonAL, {
-					 onEachFeature: onEachFeature
-				}).addTo(map);
-		</script>
-	</body>
-	</html>
+//load tile layer
+var map = L.map('map', {
+		scrollWheelZoom: true,
+  		center: [39.9635936, -75.1642056],
+  		zoom: 12
+});
+map.addLayer(layer);
+//add Geojson layer to the map ONCE the file is loaded.
+function onEachFeature(feature, layer) {
+    		if (feature.properties && feature.properties.Name) {
+        	layer.bindPopup(feature.properties.Name + "<br>" + feature.properties.img + "<br>" + feature.properties.Caption);
+    }
+}   
+var geoJsonFeature = [
+	{"type": "FeatureCollection",
+  "features": [
+    {"type": "Feature",  
+    "properties": {
+        "Name": "<b>Samuel Powel School</b>",
+        "img": "<img src='http://greatphillyschools.org/uploads/files/131163619641043029-lhf-7155-samuel-powel-1.0.20.602.361.full.jpg' height=120 width=120/>",
+        "Caption": "Black - 74.4%<br>White - 9.2%<br>Asian-4.1%<br>Other - 11.6%<br><b>SPP Score - 85.8</b>",
+        "markerColor": "#FFF222"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1957877, 39.9603237]
+	 }
+       },
+        
+        {
+       	
+       	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>Penn-Alexander School</b>",
+        "img": "<img src='http://thenotebook.org/uploads/files/290665548698423794-penn-alexander-2.full.jpg' height=120 width=120/>",
+        "Caption": "Black - 22.8%<br>White - 39.7%<br>Asian-18.1%<br>Other - 11.8%<br><b>SPP Score - 85.7</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.2105261, 39.9603237]
+	 }
+       },
+       
+        {
+       	
+       	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>McCall School</b>",
+        "img": "<img src='https://upload.wikimedia.org/wikipedia/commons/c/cc/General_George_A._McCall_School_325_s_7th,_Philly.JPG' height=120 width=120/>",
+        "Caption": "Black - 13.1%<br>White - 19.2%<br>Asian-55.7%<br>Other - 3.7%<br><b>SPP Score - 83</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1547804, 39.9446123]
+	 }
+       },
+    	
+    	{
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>Greenberg School</b>",
+        "img": "<img src='http://greatphillyschools.org/uploads/files/858159853108199482-screen-shot-2012-09-28-at-2-59-19-pm.0.65.878.526.full.jpg' height=120 width=120/>",
+        "Caption": "Black - 12.6%<br>White - 48.9%<br>Asian - 23.2%<br>Latino - 4.9%<br>Other - 9.9%<br><b>SPP Score - 82.9</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.0579445, 40.0956016]
+	 }
+       },   
+       
+       {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>Baldi Middle School</b>",
+        "img": "<img src='http://greatphillyschools.org/uploads/files/547410978897902933-baldi-middle-school-c-shonda-woods.32.0.960.576.full.jpg' height=120 width=120/>",
+        "Caption": "Black - 14.7%<br>White - 47.5%<br>Asian - 21.9%<br>Latino - 8.9%<br>Other - 6.6%<br><b>SPP Score - 78.5</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates":
+        [-75.0548225,40.0917859]
+      }
+      	
+      },   
+       
+         
+           {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>Meredith School</b>",
+        "img": "<img src='http://greatphillyschools.org/uploads/files/557706895816952380-meredith-elementary-wide.0.69.1350.810.full.jpg' height=120 width=120/>",
+        "Caption": "Black - 11.9%<br>White - 61.3%<br>Asian - 10.6%<br>Latino - 6.5%<br>Other - 9.2%<br><b>SPP Score - 78.5</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1529027, 39.9394459]
+	 }
+       },   
+      
+      {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>Tilden Middle School</b>",
+        "img": "<img src='https://www.sites.google.com/a/philasd.org/tildenmiddleschool/_/rsrc/1454951140273/home/William-Tilden-Middle-School.jpg?height=200&width=400' height=120 width=120/>",
+        "Caption": "Black - 86%<br>White - 1.1%<br>Asian - 8.5%<br>Latino - 2.1%<br>Other - 2.1%<br><b>SPP Score - 32.6</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.2346564, 39.9214711]
+	 }
+       },   
+        {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>Penn Treaty Middle School</b>",
+        "img": "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Penn_Treaty_Junior_High_School.jpg/250px-Penn_Treaty_Junior_High_School.jpg' height=120 width=120/>",
+        "Caption": "Black - 27.1%<br>White - 34%<br>Latino - 32.4%<br>Other - 5.5%<br><b>SPP Score - 34.6</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1297887, 39.9726]
+	 }
+       },   
+       
+        {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>E. Washington Rhodes School</b>",
+        "img": "<img src='http://greatphillyschools.org/uploads/files/151111932318755355-e-washington-rhodes-2.0.122.3648.2188.full.jpg' height=120 width=120/>",
+        "Caption": "Black - 27.1%<br>White - 34%<br>Latino - 32.4%<br>Other - 5.5%<br><b>SPP Score - 34.6</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1804036, 40.0025487]
+	 }
+       },   
+      
+      {
+      
+      "type": "Feature",  
+    	"properties": {
+        "Name": "<b>Leeds Middle School</b>",
+        "img": "<img src='http://www.newsworks.org/images/stories/flexicontent/l_20120213-leeds-300-1.jpg' height=120 width=120/>",
+        "Caption": "Black - 92.7%<br>Latino - 2.9%<br>Other - 3.4%<br><b>SPP Score - 37.1</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1764262, 40.070447]
+   	
+      }
+    },
+ 
+  {
+      
+      "type": "Feature",  
+    	"properties": {
+        "Name": "<b>Pennell School</b>",
+        "img": "<img src='http://www.newsworks.org/images/stories/flexicontent/l_pennellschoolkaitlyn3-300.jpg' height=120 width=120/>",
+        "Caption": "Black - 96%<br>Latino - 1.8%<br>Other - 1.6%<br><b>SPP Score - 40.1</b>",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1529136, 40.0434027]
+      		}
+  	},
+     
+      {
+      
+      "type": "Feature",  
+    	"properties": {
+        "Name": "<b>Roberto Clemente Middle School</b>",
+        "img": "<img src='http://www.squashsmarts.org/uploads/2/0/5/4/20544802/4058323_orig.jpg' height=120 width=120/>",
+        "Caption": "Black - 32.4%<br>Latino - 63.3%<br>Other - 3.1%<br><b>SPP Score - 40.5</b>",
+        "markerColor": "#FFFFFF"
+        },
+	 "geometry": {
+        "type": "Point",
+        "coordinates":[-75.1315704, 40.0064465]
+        
+   			
+      				}
+  			},
+     
+     		]
+        
+	 }
+];
+    L.geoJson(geoJsonFeature, {
+    			onEachFeature: onEachFeature
+ }).addTo(map);
+  </script>
+  </body>
+  </html>
