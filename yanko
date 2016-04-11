@@ -1,0 +1,30 @@
+<html>
+<body>
+is he yanko?
+<div id="map"></div>
+
+
+<script>
+
+
+function myJS(){
+//assign variables
+var greeting = "ykhgjkgjhkgjhk";
+alert(greeting);
+};
+
+function L(){
+var a = prompt("y/n????");
+document.getElementById("myDiv").innerHTML = a;
+}
+
+//start calling an API
+
+
+
+</script>
+<button onClick="L()">Click me!</button>
+
+<div id="myDiv"></div>
+</body>
+</html>
