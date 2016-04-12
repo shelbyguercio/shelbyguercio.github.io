@@ -39,7 +39,7 @@ map.addLayer(layer);
 //add Geojson layer to the map ONCE the file is loaded.
 function onEachFeature(feature, layer) {
     		if (feature.properties && feature.properties.Name) {
-        	layer.bindPopup(feature.properties.Name + "<br>" + feature.properties.img + "<br>" + feature.properties.Caption);
+        	layer.bindPopup(feature.properties.Name + "<br>" + feature.properties.img + "<br>" + feature.properties.Caption + "<br>" + feature.properties.Industry);
     }
 }   
 var geoJsonFeature = [
