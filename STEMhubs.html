@@ -1,0 +1,210 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+</head>
+<body>
+
+<style>
+.leaflet-popup-content-wrapper {
+	 background: #e3a9af;}
+body{background-color:#e3a9af;
+}
+p1{font-family:tahoma; font-size:32px;
+}
+p2{font-family:verdana; font-size:20px;
+}
+</style>
+
+<center>
+<p1><font color = "#60030c">STEM Jobs In Philadelphia</font></p2><br>
+<p2><font color = "#60030c">These are the locations of jobs in the STEM field in Philadelphia</font></p2><br>
+ 
+ <div id = 'map' style="height: 900px;width: 1900px;"></div>
+
+<script>
+//intialize the map
+var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',{
+  		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+	});
+		
+//load tile layer
+var map = L.map('map', {
+		scrollWheelZoom: true,
+  		center: [39.5667257, -95.7644184],
+  		zoom: 5
+});
+map.addLayer(layer);
+//add Geojson layer to the map ONCE the file is loaded.
+function onEachFeature(feature, layer) {
+    		if (feature.properties && feature.properties.Name) {
+        	layer.bindPopup(feature.properties.Name + "<br>" + feature.properties.img + "<br>" + feature.properties.Caption);
+    }
+}   
+var geoJsonFeature = [
+	{"type": "FeatureCollection",
+  "features": [
+    {"type": "Feature",  
+    "properties": {
+        "Name": "<b>Duffield Associates, Inc.</b>",
+      "Industry": Environmental Consulting
+        "Caption": "Caption",
+        "img": "<img src='https://pbs.twimg.com/profile_images/1473093027/da_logo_verticaltwi.jpg' height=320 width=320/>",
+        "markerColor": "#e3a9af"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1624364,39.9565169]
+	 }
+       },
+        
+        {
+       	
+       	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>2. Los Angeles, California</b>",
+        "img": "<img src='http://soputan.cozystayhotelbali.com/wp-content/uploads/2015/07/Barbecued-pork-noodles.jpg' height=320 width=320/>",
+        "Caption": "One of the most popular types of food in Los Angeles is actually Chinese Food. This can be traced back to the large populations of Chinese-Americans who began to immigrate into the United States in the 1900's, settling largely in the Los Angeles area. ",
+        "markerColor": "#e3a9af"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.2490746,34.0422894]
+	 }
+       },
+       
+        {
+       	
+       	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>3. Chicago, Illinois</b>",
+        "img": "<img src='http://www.viennabeef.com/filebin/images/historyOfChicagoDog.jpg' height=320 width=320/>",
+        "Caption": "The Chicago Style Hot Dog is a hot dog that is made with an all-beef frankfurter, covered with mustard, relish, a pickle, and onions. It is believed that this style of hot dog originated during the Great Depression, with Jewish origins explaining the requirement of the porkless frankfurter.",
+        "markerColor": "#e3a9af"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-87.636927, 41.8720868]
+	 }
+       },
+    	
+    	{
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>4. Houston, Texas</b>",
+        "img": "<img src='http://9126-presscdn-0-46.pagely.netdna-cdn.com/wp-content/uploads/2014/01/Smoked-Chicken-and-Andoullie-Sausage-Gumbo.png' height=320 width=320/>",
+        "Caption": "Crossing over state borders, Houston is the best place in Texas to find authentic Louisiana Creole cuisine. It is often centered around shrimp, crawfish, or other seafood variations. Popular dishes are gumbo, jambalaya, and dirty rice. Origins span across several countries and cultures, making it a true remnant of colonialization and settlement.",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.4051769, 29.7574579]
+	 }
+       },   
+       
+       {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>5. Philadelphia, Pennsylvania</b>",
+        "img": "<img src='https://pantograph0.goldbely.com/uploads/product_image/image/7329/jims-philly-cheesesteaks-12-pack.99a3b1ba624db92a7569238eff732ba2.png' height=320 width=320/>",
+        "Caption": "Philadelphia folklore credits the creation of the Cheesesteak to Pat and Harry Olivieri, two hotdog vendors who decided to grill up some beef and put it on an italian roll. With that, the Cheesesteak was born. Pat's cheesesteak shop, along with rival Geno's and underdog Jim's, are the three best-known cheesesteak joints in Philadelphia. Cheesesteaks can be outfitted with various toppings, such as fried onions, peppers, and mushrooms. Cheez-whiz is a popular cheese alternative in the area.",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates":
+        [-75.1574453,39.9816619]
+      }
+      	
+      },   
+       
+         
+           {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>6. Phoenix, Arizona</b>",
+        "img": "<img src='http://elcamion.co.uk/assets/2015/08/IMG_9011.jpg?f44b0d' height=320 width=320/>",
+        "Caption": "I jokingly put cacti as a placeholder for this position, but if you consider Arizona's rich history of Native American culture, it's actually not much of a stretch. Saguaro and prickly-pear cacti have long been a staple in the diet of the local Native Americans. It is interesting to see how some restaurants in Phoenix have incorporated cacti into their menus.",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-112.0894845, 33.4443931]
+	 }
+       },   
+      
+      {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>7. San Antonio, Texas</b>",
+        "img": "<img src='http://chuckscorner.club/wp-content/uploads/2016/03/tex-mex.jpg' height=320 width=320/>",
+        "Caption": "Tex-Mex cuisine can trace its history back to the when the Spanish first settled in Texas. The food itself is a mix between Tejano Native Americans and Spanish cuisine. It's characterized by foods that appear to be Mexican in origin, but may contain ingredients not commonly used in native Mexican cuisine.",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.4968275, 29.4025803]
+	 }
+       },   
+        {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>8. San Diego, California</b>",
+        "img": "<img src='http://cdn.foodbeast.com.s3.amazonaws.com/content/wp-content/uploads/2013/05/sdburrito.jpg' height=320 width=320/>",
+        "Caption": "San Diego is another city that boasts about its Mexican food, but uniquely, it is the birthplace of an interested spin-off: The California Burrito. The California burritos are generally known for containing carne asada, cheese, french fries, sour cream, and guacamole. The origins of this are contested, but it appears to have gained popularity only recently in the 2000s.",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-117.1512347, 32.7353205]
+	 }
+       },   
+       
+        {
+       	
+  	"type": "Feature",  
+    	"properties": {
+        "Name": "<b>9. Dallas, Texas</b>",
+        "img": "<img src='http://ww1.prweb.com/prfiles/2009/12/10/3327044/0_CountyLineBBQ.JPG' height=320 width=320/>",
+        "Caption": "The origin of meat-smoking in the south can be traced back to German and Czech settlers that came to Texas during the mid-19th century. The modern version of Texas BBQ was tweaked and spread throughout the region largely via cultural exchange of African Americans.",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-96.8043953, 32.7742565]
+	 }
+       },   
+      
+      {
+      
+      "type": "Feature",  
+    	"properties": {
+        "Name": "<b>10. San Jose, California</b>",
+        "img": "<img src='http://www.freewilliamsburg.com/wp-content/uploads/2013/03/dos-toros.png' height=320 width=320/>",
+        "Caption": "San Jose, like most cities in California, is known for it's superb Mexican food. In particular, it's known for the Mission Burrito, which is basically as authentic as you can get. It originated in San Francisco's Mission District, which has a large population of Mexican immigrants. The Mission Burrito is characterized by being much larger than regular burritos, stuffed with extra rice and toppings.",
+        "markerColor": "#FFFFFF"
+        },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.9574941, 37.2972061]
+   	
+      }
+    },
+ 
+ 
+     
+     		]
+        
+	 }
+];
+    L.geoJson(geoJsonFeature, {
+    			onEachFeature: onEachFeature
+ }).addTo(map);
+  </script>
+  </body>
+  </html>
