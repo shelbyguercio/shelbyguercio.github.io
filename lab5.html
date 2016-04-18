@@ -62,7 +62,20 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
       		}
     	},
     		
-  
+  {"type": "FeatureCollection",
+  		"features": [
+    		{"type": "Feature",
+      			"properties": {
+        		"Name": "<center><strong>High School</strong></center>",
+        		"img": "<center><img src='http://cdn.patch.com/users/5713/2015/05/T800x600/201505555bcd866df02.png' height=200 width=300/></center>",
+        		"Caption": "This is where I went to high school! My middle and elementary schools were both right next door. I went to school with about 2,000 students from grades 9 through 12.",
+        		"markercolor": "#ff8888"
+        		},
+      		"geometry": {
+        		"type": "Point",
+        		"coordinates": [-73.101081, 40.838847]
+      		}
+    	},
     ]
 }];
 L.geoJson(geoJsonFeature, {
