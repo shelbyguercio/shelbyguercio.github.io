@@ -29,9 +29,9 @@
 <script src="http://gus8068spr16.github.io/Leaflet.Instagram/dist/Leaflet.Instagram.js"></script> 
 			
 <script>
-var map = L.map('map').setView([40.758899, -73.9873197], 15); 
+var map = L.map('map').setView([40.8269696, -73.1247305], 15); 
 var at = '256164975.c9600e9.7a9aeb07284e4220bdddeaddcbedee38'; 
-var url = "https://api.instagram.com/v1/media/search?lat=40.758899&lng=-73.9873197&access_token="+at;
+var url = "https://api.instagram.com/v1/media/search?lat=40.8269696&lng=-73.1247305&access_token="+at;
 	
 L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', 
 		{   
@@ -41,6 +41,37 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
 	}).addTo(map); 
 	L.instagram(url).addTo(map); 
 	
+
+// GeoJSON layer 
+	function onEachFeature(feature, layer) {
+    		if (feature.properties && feature.properties.Name) {
+        	layer.bindPopup(feature.properties.Name + "<br>" + feature.properties.img + "<br>" + feature.properties.Caption);
+	}
+	}
+	var geoJsonFeature = [
+	{"type": "FeatureCollection",
+  		"features": [
+    		{"type": "Feature",
+      			"properties": {
+        		"Name": "<center><strong>My House</strong></center>",
+        		"img": "<center><img src='http://photos1.zillowstatic.com/p_f/ISl24n5t1hpm481000000000.jpg' height=200 width=300/></center>",
+        		"Caption": "This is the house that I lived in most of my life until I was 19. It was huge and it had a fish pond out front.",
+        		"markercolor": "#ff8888"
+        		},
+      		"geometry": {
+        		"type": "Point",
+        		"coordinates": [ -73.108457, 40.822339]
+      		}
+    	},
+    		
+    	},
+    ]
+}];
+L.geoJson(geoJsonFeature, {
+ 	onEachFeature: onEachFeature
+  				 
+ }).addTo(map);
+
 
 </script>
 </body>
