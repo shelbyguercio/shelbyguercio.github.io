@@ -40,48 +40,6 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
 	L.instagram(url).addTo(map); 
 	
 
-// GeoJSON layer 
-	function onEachFeature(feature, layer) {
-    		if (feature.properties && feature.properties.Name) {
-        	layer.bindPopup(feature.properties.Name + "<br>" + feature.properties.img + "<br>" + feature.properties.Caption);
-	}
-	}
-	var geoJsonFeature = [
-	{"type": "FeatureCollection",
-  		"features": [
-    		{"type": "Feature",
-      			"properties": {
-        		"Name": "<center><strong>My House</strong></center>",
-        		"img": "<center><img src='http://photos1.zillowstatic.com/p_f/ISl24n5t1hpm481000000000.jpg' height=200 width=300/></center>",
-        		"Caption": "This is the house that I lived in most of my life until I was 19. It was huge and it had a fish pond out front.",
-        		"markercolor": "#ff8888"
-        		},
-      		"geometry": {
-        		"type": "Point",
-        		"coordinates": [ -73.108457, 40.822339]
-      		}
-    	},
-    		
-  {"type": "FeatureCollection",
-  		"features": [
-    		{"type": "Feature",
-      			"properties": {
-        		"Name": "<center><strong>High School</strong></center>",
-        		"img": "<center><img src='http://cdn.patch.com/users/5713/2015/05/T800x600/201505555bcd866df02.png' height=200 width=300/></center>",
-        		"Caption": "This is where I went to high school! My middle and elementary schools were both right next door. I went to school with about 2,000 students from grades 9 through 12.",
-        		"markercolor": "#ff8888"
-        		},
-      		"geometry": {
-        		"type": "Point",
-        		"coordinates": [-73.101081, 40.838847]
-      		}
-    	},
-    ]
-}]
-L.geoJson(geoJsonFeature, {
- 	onEachFeature: onEachFeature
-  				 
- }).addTo(map);
 
 
 </script>
