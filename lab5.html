@@ -41,8 +41,9 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
 	
 
 
-// GeoJSON layer 
-	function onEachFeature(feature, layer) {
+map.addLayer(layer);
+//add Geojson layer to the map ONCE the file is loaded.
+function onEachFeature(feature, layer) {
     		if (feature.properties && feature.properties.Name) {
         	layer.bindPopup(feature.properties.Name + "<br>" + feature.properties.img + "<br>" + feature.properties.Caption);
 	}
@@ -60,10 +61,11 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
       		"geometry": {
         		"type": "Point",
         		"coordinates": [ -73.108457, 40.822339]
-      		}
-    	},
-    		
-  {"type": "FeatureCollection",
+      	 }
+       },   
+      
+      {
+      "type": "FeatureCollection",
   		"features": [
     		{"type": "Feature",
       			"properties": {
