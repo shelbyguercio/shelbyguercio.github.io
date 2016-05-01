@@ -1,22 +1,25 @@
 <html>
 <head>  
-	<title>Prisons Vs Poverty</title>  
+	<title>Poverty Vs Prisons</title>  
 				
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-	<!--stylesheet for Leaflet Map elements--> 
-	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-	<!--Google Font defined in the CSS style sheet-->	
+				
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	
 	
 
 	<!--Start CSS-->
 	<style>
 		body {
-		background-color: white
+		background-color: #012d5e
 		}
-		
+		p1{font-family:tahoma; font-size:32px;
+                 }
+		p2{font-family:verdana; font-size:20px;
+		}
+
 		#map {
-			width: 1000px;
+			width: 1200px;
 			height: 600px;
 		}
 	
@@ -51,8 +54,12 @@
 </head>
 <body> 
 <center>
-<font face="Oswald" size="400" color="#000000">Mapping Poverty in Pennsylvania</font> 
-<br><font face="Oxygen" size="200" color="#000000">Poverty rates in every PA county, in one map.</font><br><br>
+<p1><font color="#b9daff">Poverty Vs. Prisons</font></p1>
+<br>
+<p2><font color="#b9daff">This map shows the correlation between county-wide poverty rates and prisons in the state of Pennsylvania, focusing on Department of Corrections state correctional institutions (SCI).</font></p2>
+<br>
+<br>
+
 		
 	<div id="map"></div>
 	
@@ -63,31 +70,30 @@
 	
 	<script>
 		// Add basemap
-		var prison = new L.LayerGroup();
-		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-	        L.marker([41.798755, -80.056855]).bindPopup('SCI Cambridge Springs').addTo(prison),
-		L.marker([40.217611, -76.927164]).bindPopup('SCI Camp Hill').addTo(prison);
-		L.marker([39.851171, -75.351525]).bindPopup('SCI Chester').addTo(prison),
-		L.marker([40.806081, -76.559856]).bindPopup('SCI Coal Township').addTo(prison);
-		L.marker([41.281540, -76.013891]).bindPopup('SCI Dallas').addTo(prison),
-		L.marker([39.998193, -79.986754]).bindPopup('SCI Fayette').addTo(prison);
-		L.marker([41.481195, -79.100390]).bindPopup('SCI Forest').addTo(prison),
-		L.marker([40.771094, -76.208277]).bindPopup('SCI Frackville').addTo(prison);
-		L.marker([40.233199, -75.433573]).bindPopup('SCI Graterford').addTo(prison),
-		L.marker([39.906233, -80.136788]).bindPopup('SCI Greene').addTo(prison);
-		L.marker([40.812289, -78.356444]).bindPopup('SCI Houtzdale').addTo(prison),
-		L.marker([40.491224, -78.028565]).bindPopup('SCI Huntingdon').addTo(prison);
-		L.marker([40.002699, -79.042973]).bindPopup('SCI Laurel Highlands').addTo(prison),
-		L.marker([40.791079, -76.177837]).bindPopup('SCI Mahanoy').addTo(prison);
-		L.marker([41.206989, -80.220400]).bindPopup('SCI Mercer').addTo(prison),
-		L.marker([41.202463, -76.825471]).bindPopup('SCI Muncy').addTo(prison);
-		L.marker([40.647642, -79.099920]).bindPopup('SCI Pine Grove').addTo(prison);
-		L.marker([40.469700, -80.040041]).bindPopup('SCI Pittsburgh').addTo(prison);
-		L.marker([41.185477, -78.144325]).bindPopup('Quehanna Boot Camp').addTo(prison);
-		L.marker([41.187739, -76.081863]).bindPopup('SCI Retreat').addTo(prison);
-
-		var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+		var org = new L.LayerGroup();
+		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(org),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(org);
+	        L.marker([41.798755, -80.056855]).bindPopup('SCI Cambridge Springs').addTo(org),
+		L.marker([40.217611, -76.927164]).bindPopup('SCI Camp Hill').addTo(org);
+		L.marker([39.851171, -75.351525]).bindPopup('SCI Chester').addTo(org),
+		L.marker([40.806081, -76.559856]).bindPopup('SCI Coal Township').addTo(org);
+		L.marker([41.281540, -76.013891]).bindPopup('SCI Dallas').addTo(org),
+		L.marker([39.998193, -79.986754]).bindPopup('SCI Fayette').addTo(org);
+		L.marker([41.481195, -79.100390]).bindPopup('SCI Forest').addTo(org),
+		L.marker([40.771094, -76.208277]).bindPopup('SCI Frackville').addTo(org);
+		L.marker([40.233199, -75.433573]).bindPopup('SCI Graterford').addTo(org),
+		L.marker([39.906233, -80.136788]).bindPopup('SCI Greene').addTo(org);
+		L.marker([40.812289, -78.356444]).bindPopup('SCI Houtzdale').addTo(org),
+		L.marker([40.491224, -78.028565]).bindPopup('SCI Huntingdon').addTo(org);
+		L.marker([40.002699, -79.042973]).bindPopup('SCI Laurel Highlands').addTo(org),
+		L.marker([40.791079, -76.177837]).bindPopup('SCI Mahanoy').addTo(org);
+		L.marker([41.206989, -80.220400]).bindPopup('SCI Mercer').addTo(org),
+		L.marker([41.202463, -76.825471]).bindPopup('SCI Muncy').addTo(org);
+		L.marker([40.647642, -79.099920]).bindPopup('SCI Pine Grove').addTo(org);
+		L.marker([40.469700, -80.040041]).bindPopup('SCI Pittsburgh').addTo(org);
+		L.marker([41.185477, -78.144325]).bindPopup('Quehanna Boot Camp').addTo(org);
+		L.marker([41.187739, -76.081863]).bindPopup('SCI Retreat').addTo(org);	
+	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw';
@@ -95,7 +101,7 @@
 		var map = L.map('map', {
 			center: [40.8444034, -77.6937927],
 			zoom: 7.5,
-			layers: [pencil, prison]
+			layers: [pencil, org]
 		});
 	
 		var baseMaps = {
@@ -103,7 +109,7 @@
 		};
 	
 		var overlays = {
-			"Prisons": prison
+			"Prisons": org
 		};
 	
 		L.control.layers(baseMaps, overlays).addTo(map);
@@ -127,14 +133,14 @@
 		
 		// get color depending on poverty rate value
 		function getColor(d) {
-			return d > 17.2 ? '#bd0026' :
-			       d > 14.5  ? '#f03b20' :
-		               d > 11.8  ? '#fd8d3c' :
-			       d > 8.9  ? '#fecc5c' :
-			       d > 5.9   ? '#ffffb2' :
-					  '#FFEDA0';
-		}
-	
+			return d > 17.2 ? '#08519c' :
+			       d > 14.5  ? '#3182bd' :
+		               d > 11.8  ? '#6baed6' :
+			       d > 8.9  ? '#9ecae1' :
+			       d > 5.9   ? '#c6dbef' :
+					  '#eff3ff';
+		}	
+
 		function style(feature) {
 			return {
 				weight: 2,
