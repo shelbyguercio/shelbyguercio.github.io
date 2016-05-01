@@ -1,1 +1,205 @@
-html
+<html>
+<head>  
+	<title>Site title</title>  
+				
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<!--stylesheet for Leaflet Map elements--> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+	<!--Google Font defined in the CSS style sheet-->	
+	
+
+	<!--Start CSS-->
+	<style>
+		body {
+		background-color: maroon
+		}
+		
+		#map {
+			width: 1400px;
+			height: 800px;
+		}
+	
+		.info {
+			padding: 6px 8px;
+			font: 14px/16px Arial, Helvetica, sans-serif;
+			background: black;
+			background: rgba(255,255,255,0.8);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+		.info h4 {
+			margin: 0 0 5px;
+			color: #777;
+		}
+	
+		.legend {
+			text-align: left;
+			line-height: 18px;
+			color: #555;
+		}
+		.legend i {
+			width: 18px;
+			height: 18px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+	</style>
+	<!--End CSS-->
+<link rel="icon" href="temple.png" type="image/png" sizes="16x16">
+</head>
+<body> 
+<center>
+<font face="Oswald" size="400" color="#000000">Title</font> 
+<br><font face="Oxygen" size="200" color="#000000">Subtitle</font><br><br>
+		
+	<div id="map"></div>
+	
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<!--Leaflet JavaScript file-->
+	
+	<script type="text/javascript" src="counties_id.js"></script>
+	
+	<script>
+		// Add basemap
+		var org = new L.LayerGroup();
+		L.marker([39.9516964, -75.1632261]).bindPopup('Shared Prosperity Philadelphia').addTo(org),
+		L.marker([40.262405, -76.8799797]).bindPopup('PA Head Start').addTo(org);
+		L.marker([40.3143016, -75.1362093]).bindPopup('Bucks Opportunity Council').addTo(org),
+		L.marker([40896129, -78.370955]).bindPopup('Central PA Community Action').addTo(org);
+		L.marker([41.238166, -75.8759922]).bindPopup('Commission on Economic Opportunity').addTo(org),
+		L.marker([40.3757444, -79.8445616]).bindPopup('Greater Pittsburgh Community Food Bank').addTo(org);
+		L.marker([40.5543655, -79.7605137]).bindPopup('Habitat for Humanity Allegheny Valley').addTo(org),
+		L.marker([40.0763744, -76.3372087]).bindPopup('Hope International').addTo(org);
+		L.marker([40.723527, -80.2002956]).bindPopup('Hosanna Industries').addTo(org),
+		L.marker([41.871009, -79.1515307]).bindPopup('North Warren Presbyterian Church').addTo(org);
+		L.marker([40.4430924, -75.3393305]).bindPopup('Quakertown Food Pantry').addTo(org),
+		L.marker([40.7848931, -77.8433577]).bindPopup('State College Food Bank').addTo(org);
+		var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2hlbGJ5Z3VlcmNpbyIsImEiOiJjaWtvbGxpMnkweGVudHlqNzI2MjhkdzMyIn0.TAUMxj4fNDxfIFRUPRuJAg';
+		var pencil   = L.tileLayer(mbUrl, {id: 'mapbox.pencil', attribution: mbAttr});
+		var map = L.map('map', {
+			center: [40.8444034, -77.6937927],
+			zoom: 7,
+			layers: [pencil, org]
+		});
+	
+		var baseMaps = {
+    			"Basemap": pencil,
+		};
+	
+		var overlays = {
+			"Organizations": point
+		};
+	
+		L.control.layers(baseMaps, overlays).addTo(map);
+		
+		// shows county info on hover
+		var info = L.control();
+	
+		info.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info');
+			this.update();
+			return this._div;
+		};
+	
+		info.update = function (props) {
+			this._div.innerHTML = '<h4>PA Poverty Rate</h4>' +  (props ?
+				'<b>' + props.NAME + '</b><br />' + props.POVRATE + ' percent '
+				: 'Hover over a county');
+		};
+	
+		info.addTo(map);
+		
+		// get color depending on poverty rate value
+		function getColor(d) {
+			return d > 17.2 ? '#08519c' :
+			       d > 14.5  ? '#3182bd' :
+		          d > 11.8  ? '#6baed6' :
+			       d > 8.9  ? '#bdd7e7' :
+			       d > 5.9   ? '#c6dbef' :
+					  '#eff3ff';
+		}
+	
+		function style(feature) {
+			return {
+				weight: 2,
+				opacity: 1,
+				color: 'white',
+				dashArray: '3',
+				fillOpacity: 0.7,
+				fillColor: getColor(feature.properties.POVRATE)
+			};
+		}
+		
+		function highlightFeature(e) {
+			var layer = e.target;
+	
+			layer.setStyle({
+			weight: 5,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7
+		});
+	
+		if (!L.Browser.ie && !L.Browser.opera) {
+			layer.bringToFront();
+		}
+	
+		info.update(layer.feature.properties);
+	}
+	
+		var counties_id;
+		
+		function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+	
+		function zoomToFeature(e) {
+			map.fitBounds(e.target.getBounds());
+		}
+	
+		function onEachFeature(feature, layer) {
+			layer.on({
+				mouseover: highlightFeature,
+				mouseout: resetHighlight,
+				click: zoomToFeature
+			});
+		}
+	
+		geojson = L.geoJson(counties_id, {
+			style: style,
+			onEachFeature: onEachFeature
+		}).addTo(map);
+			
+		var legend = L.control({position: 'bottomright'});
+	
+		legend.onAdd = function (map) {
+	
+			var div = L.DomUtil.create('div', 'info legend'),
+				grades = [5.9, 8.9, 11.8, 14.5, 17.2],
+				labels = [],
+				from, to;
+	
+			for (var i = 0; i < grades.length; i++) {
+				from = grades[i];
+				to = grades[i + 1];
+	
+				labels.push(
+					'<i style="background:' + getColor(from + 1) + '"></i> ' +
+					from + (to ? '&ndash;' + to : '+'));
+			}
+	
+		div.innerHTML = labels.join('<br>');
+		return div;
+	};
+	
+	legend.addTo(map);
+		
+</script>
+</body>
+</html>
