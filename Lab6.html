@@ -1,6 +1,6 @@
 <html>
 <head>  
-	<title>Site title</title>  
+	<title>Interactive Poverty Map</title>  
 				
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 	<!--stylesheet for Leaflet Map elements--> 
@@ -12,12 +12,12 @@
 	<!--Start CSS-->
 	<style>
 		body {
-		background-color: maroon
+		background-color: white
 		}
 		
 		#map {
-			width: 1400px;
-			height: 800px;
+			width: 1000px;
+			height: 600px;
 		}
 	
 		.info {
@@ -51,8 +51,8 @@
 </head>
 <body> 
 <center>
-<font face="Oswald" size="400" color="#000000">Title</font> 
-<br><font face="Oxygen" size="200" color="#000000">Subtitle</font><br><br>
+<font face="Oswald" size="400" color="#000000">Mapping Poverty in Pennsylvania</font> 
+<br><font face="Oxygen" size="200" color="#000000">Poverty rates in every PA county, in one map.</font><br><br>
 		
 	<div id="map"></div>
 	
@@ -79,7 +79,7 @@
 		var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoic2hlbGJ5Z3VlcmNpbyIsImEiOiJjaWtvbGxpMnkweGVudHlqNzI2MjhkdzMyIn0.TAUMxj4fNDxfIFRUPRuJAg';
+			mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw';
 		var pencil   = L.tileLayer(mbUrl, {id: 'mapbox.pencil', attribution: mbAttr});
 		var map = L.map('map', {
 			center: [40.8444034, -77.6937927],
@@ -92,7 +92,7 @@
 		};
 	
 		var overlays = {
-			"Organizations": point
+			"Organizations": org
 		};
 	
 		L.control.layers(baseMaps, overlays).addTo(map);
@@ -116,12 +116,12 @@
 		
 		// get color depending on poverty rate value
 		function getColor(d) {
-			return d > 17.2 ? '#08519c' :
-			       d > 14.5  ? '#3182bd' :
-		          d > 11.8  ? '#6baed6' :
-			       d > 8.9  ? '#bdd7e7' :
-			       d > 5.9   ? '#c6dbef' :
-					  '#eff3ff';
+			return d > 17.2 ? '#bd0026' :
+			       d > 14.5  ? '#f03b20' :
+		               d > 11.8  ? '#fd8d3c' :
+			       d > 8.9  ? '#fecc5c' :
+			       d > 5.9   ? '#ffffb2' :
+					  '#FFEDA0';
 		}
 	
 		function style(feature) {
