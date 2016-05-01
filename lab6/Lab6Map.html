@@ -51,7 +51,7 @@
 <body> 
 <center>
 <font face="Oswald" size="400" color="#b9daff">Poverty Vs. Prisons</font> 
-<br><font face="Oxygen" size="50" color="#b9daff">This map shows the correlation between county-wide poverty rates and prisons in Pennsylvania.</font><br><br>
+<br><font face="Oxygen" size="50" color="#b9daff">This map shows the correlation between county-wide poverty rates and prisons in the state of Pennsylvania, focusing on Department of Corrections state correctional institutions (SCI).</font><br><br>
 		
 	<div id="map"></div>
 	
@@ -63,9 +63,18 @@
 	<script>
 		// Add basemap
 		var prison = new L.LayerGroup();
-		L.marker([39.9516964, -75.1632261]).bindPopup('Shared Prosperity Philadelphia').addTo(prison),
-		L.marker([40.262405, -76.8799797]).bindPopup('PA Head Start').addTo(prison);
-	
+		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
+	        L.marker([41.798755, -80.056855]).bindPopup('SCI Cambridge Springs').addTo(prison),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
+		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
+		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
+		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
+		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
 		var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
