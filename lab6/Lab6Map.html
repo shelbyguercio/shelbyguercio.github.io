@@ -62,7 +62,7 @@
 	
 	<script>
 		// Add basemap
-		var org = new L.LayerGroup();
+		var prison = new L.LayerGroup();
 		L.marker([39.9516964, -75.1632261]).bindPopup('Shared Prosperity Philadelphia').addTo(org),
 		L.marker([40.262405, -76.8799797]).bindPopup('PA Head Start').addTo(org);
 		L.marker([40.3143016, -75.1362093]).bindPopup('Bucks Opportunity Council').addTo(org),
@@ -91,7 +91,7 @@
 		};
 	
 		var overlays = {
-			"Organizations": org
+			"Prisons": prison
 		};
 	
 		L.control.layers(baseMaps, overlays).addTo(map);
