@@ -1,24 +1,23 @@
 <html>
 <head>  
-	<title>Poverty Versus Prisons</title>  
+	<title>Interactive Poverty Map</title>  
 				
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<!--stylesheet for Leaflet Map elements--> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+	<!--Google Font defined in the CSS style sheet-->	
+	
 
 	<!--Start CSS-->
 	<style>
 		body {
-		background-color: #012d5e
-		}
-		p1{font-family:tahoma; font-size:32px;
-                 }
-		p2{font-family:verdana; font-size:20px;
+		background-color: white
 		}
 		
 		#map {
-			width: 1200px;
-			height: 650px;
+			width: 1000px;
+			height: 600px;
 		}
 	
 		.info {
@@ -48,14 +47,12 @@
 		}
 	</style>
 	<!--End CSS-->
+<link rel="icon" href="temple.png" type="image/png" sizes="16x16">
 </head>
 <body> 
 <center>
-<p1><font color="#b9daff">Poverty Vs. Prisons</font></p1>
-<br>
-<p2><font color="#b9daff">This map shows the correlation between county-wide poverty rates and prisons in the state of Pennsylvania, focusing on Department of Corrections state correctional institutions (SCI).</font></p2>
-<br>
-<br>
+<font face="Oswald" size="400" color="#000000">Mapping Poverty in Pennsylvania</font> 
+<br><font face="Oxygen" size="200" color="#000000">Poverty rates in every PA county, in one map.</font><br><br>
 		
 	<div id="map"></div>
 	
@@ -66,40 +63,28 @@
 	
 	<script>
 		// Add basemap
-		var prison = new L.LayerGroup();
-		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-	        L.marker([41.798755, -80.056855]).bindPopup('SCI Cambridge Springs').addTo(prison),
-		L.marker([40.217611, -76.927164]).bindPopup('SCI Camp Hill').addTo(prison);
-		L.marker([39.851171, -75.351525]).bindPopup('SCI Chester').addTo(prison),
-		L.marker([40.806081, -76.559856]).bindPopup('SCI Coal Township').addTo(prison);
-		L.marker([41.281540, -76.013891]).bindPopup('SCI Dallas').addTo(prison),
-		L.marker([39.998193, -79.986754]).bindPopup('SCI Fayette').addTo(prison);
-		L.marker([41.481195, -79.100390]).bindPopup('SCI Forest').addTo(prison),
-		L.marker([40.771094, -76.208277]).bindPopup('SCI Frackville').addTo(prison);
-		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-			L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-			L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-			L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-			L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-			L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-			L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(prison),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(prison);
-	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+		var org = new L.LayerGroup();
+		L.marker([39.9516964, -75.1632261]).bindPopup('Shared Prosperity Philadelphia').addTo(org),
+		L.marker([40.262405, -76.8799797]).bindPopup('PA Head Start').addTo(org);
+		L.marker([40.3143016, -75.1362093]).bindPopup('Bucks Opportunity Council').addTo(org),
+		L.marker([40896129, -78.370955]).bindPopup('Central PA Community Action').addTo(org);
+		L.marker([41.238166, -75.8759922]).bindPopup('Commission on Economic Opportunity').addTo(org),
+		L.marker([40.3757444, -79.8445616]).bindPopup('Greater Pittsburgh Community Food Bank').addTo(org);
+		L.marker([40.5543655, -79.7605137]).bindPopup('Habitat for Humanity Allegheny Valley').addTo(org),
+		L.marker([40.0763744, -76.3372087]).bindPopup('Hope International').addTo(org);
+		L.marker([40.723527, -80.2002956]).bindPopup('Hosanna Industries').addTo(org),
+		L.marker([41.871009, -79.1515307]).bindPopup('North Warren Presbyterian Church').addTo(org);
+		L.marker([40.4430924, -75.3393305]).bindPopup('Quakertown Food Pantry').addTo(org),
+		L.marker([40.7848931, -77.8433577]).bindPopup('State College Food Bank').addTo(org);
+		var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw';
 		var pencil   = L.tileLayer(mbUrl, {id: 'mapbox.pencil', attribution: mbAttr});
 		var map = L.map('map', {
 			center: [40.8444034, -77.6937927],
-			zoom: 7.5,
-			layers: [pencil, prison]
+			zoom: 7,
+			layers: [pencil, org]
 		});
 	
 		var baseMaps = {
@@ -107,7 +92,7 @@
 		};
 	
 		var overlays = {
-			"Prisons": prison,
+			"Organizations": org
 		};
 	
 		L.control.layers(baseMaps, overlays).addTo(map);
