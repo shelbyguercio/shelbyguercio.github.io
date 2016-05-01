@@ -51,7 +51,7 @@
 <body> 
 <center>
 <font face="Oswald" size="400" color="#b9daff">Poverty Vs. Prisons</font> 
-<br><font face="Oxygen" size="200" color="#b9daff">This map shows the correlation between county-wide poverty rates and prisons in Pennsylvania.</font><br><br>
+<br><font face="Oxygen" size="50" color="#b9daff">This map shows the correlation between county-wide poverty rates and prisons in Pennsylvania.</font><br><br>
 		
 	<div id="map"></div>
 	
@@ -73,7 +73,7 @@
 		var pencil   = L.tileLayer(mbUrl, {id: 'mapbox.pencil', attribution: mbAttr});
 		var map = L.map('map', {
 			center: [40.8444034, -77.6937927],
-			zoom: 7,
+			zoom: 8,
 			layers: [pencil, prison]
 		});
 	
