@@ -70,29 +70,29 @@
 	
 	<script>
 		// Add basemap
-		var org = new L.LayerGroup();
-		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(org),
-		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(org);
-	        L.marker([41.798755, -80.056855]).bindPopup('SCI Cambridge Springs').addTo(org),
-		L.marker([40.217611, -76.927164]).bindPopup('SCI Camp Hill').addTo(org);
-		L.marker([39.851171, -75.351525]).bindPopup('SCI Chester').addTo(org),
-		L.marker([40.806081, -76.559856]).bindPopup('SCI Coal Township').addTo(org);
-		L.marker([41.281540, -76.013891]).bindPopup('SCI Dallas').addTo(org),
-		L.marker([39.998193, -79.986754]).bindPopup('SCI Fayette').addTo(org);
-		L.marker([41.481195, -79.100390]).bindPopup('SCI Forest').addTo(org),
-		L.marker([40.771094, -76.208277]).bindPopup('SCI Frackville').addTo(org);
-		L.marker([40.233199, -75.433573]).bindPopup('SCI Graterford').addTo(org),
-		L.marker([39.906233, -80.136788]).bindPopup('SCI Greene').addTo(org);
-		L.marker([40.812289, -78.356444]).bindPopup('SCI Houtzdale').addTo(org),
-		L.marker([40.491224, -78.028565]).bindPopup('SCI Huntingdon').addTo(org);
-		L.marker([40.002699, -79.042973]).bindPopup('SCI Laurel Highlands').addTo(org),
-		L.marker([40.791079, -76.177837]).bindPopup('SCI Mahanoy').addTo(org);
-		L.marker([41.206989, -80.220400]).bindPopup('SCI Mercer').addTo(org),
-		L.marker([41.202463, -76.825471]).bindPopup('SCI Muncy').addTo(org);
-		L.marker([40.647642, -79.099920]).bindPopup('SCI Pine Grove').addTo(org);
-		L.marker([40.469700, -80.040041]).bindPopup('SCI Pittsburgh').addTo(org);
-		L.marker([41.185477, -78.144325]).bindPopup('Quehanna Boot Camp').addTo(org);
-		L.marker([41.187739, -76.081863]).bindPopup('SCI Retreat').addTo(org);	
+		var pris = new L.LayerGroup();
+		L.marker([41.878579, -80.363301]).bindPopup('SCI Albion').addTo(pris),
+		L.marker([40.859101, -77.778086]).bindPopup('SCI Benner Township').addTo(pris);
+	        L.marker([41.798755, -80.056855]).bindPopup('SCI Cambridge Springs').addTo(pris),
+		L.marker([40.217611, -76.927164]).bindPopup('SCI Camp Hill').addTo(pris);
+		L.marker([39.851171, -75.351525]).bindPopup('SCI Chester').addTo(pris),
+		L.marker([40.806081, -76.559856]).bindPopup('SCI Coal Township').addTo(pris);
+		L.marker([41.281540, -76.013891]).bindPopup('SCI Dallas').addTo(pris),
+		L.marker([39.998193, -79.986754]).bindPopup('SCI Fayette').addTo(pris);
+		L.marker([41.481195, -79.100390]).bindPopup('SCI Forest').addTo(pris),
+		L.marker([40.771094, -76.208277]).bindPopup('SCI Frackville').addTo(pris);
+		L.marker([40.233199, -75.433573]).bindPopup('SCI Graterford').addTo(pris),
+		L.marker([39.906233, -80.136788]).bindPopup('SCI Greene').addTo(pris);
+		L.marker([40.812289, -78.356444]).bindPopup('SCI Houtzdale').addTo(pris),
+		L.marker([40.491224, -78.028565]).bindPopup('SCI Huntingdon').addTo(pris);
+		L.marker([40.002699, -79.042973]).bindPopup('SCI Laurel Highlands').addTo(pris),
+		L.marker([40.791079, -76.177837]).bindPopup('SCI Mahanoy').addTo(pris);
+		L.marker([41.206989, -80.220400]).bindPopup('SCI Mercer').addTo(pris),
+		L.marker([41.202463, -76.825471]).bindPopup('SCI Muncy').addTo(pris);
+		L.marker([40.647642, -79.099920]).bindPopup('SCI Pine Grove').addTo(pris);
+		L.marker([40.469700, -80.040041]).bindPopup('SCI Pittsburgh').addTo(pris);
+		L.marker([41.185477, -78.144325]).bindPopup('Quehanna Boot Camp').addTo(pris);
+		L.marker([41.187739, -76.081863]).bindPopup('SCI Retreat').addTo(pris);	
 	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -101,7 +101,7 @@
 		var map = L.map('map', {
 			center: [40.8444034, -77.6937927],
 			zoom: 7.5,
-			layers: [pencil, org]
+			layers: [pencil, pris]
 		});
 	
 		var baseMaps = {
@@ -109,7 +109,7 @@
 		};
 	
 		var overlays = {
-			"Prisons": org
+			"Prisons": pris
 		};
 	
 		L.control.layers(baseMaps, overlays).addTo(map);
