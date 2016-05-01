@@ -1,25 +1,22 @@
 <html>
 <head>  
-	<title>Poverty Versus Prisons</title>  
+	<title>Interactive Poverty Map</title>  
 				
-				
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-	
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<!--stylesheet for Leaflet Map elements--> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+	<!--Google Font defined in the CSS style sheet-->	
 	
 
 	<!--Start CSS-->
 	<style>
 		body {
-		background-color: #012d5e
+		background-color: white
 		}
-		p1{font-family:tahoma; font-size:32px;
-                 }
-		p2{font-family:verdana; font-size:20px;
-		}
-
+		
 		#map {
-			width: 1200px;
+			width: 1000px;
 			height: 600px;
 		}
 	
@@ -54,12 +51,8 @@
 </head>
 <body> 
 <center>
-<p1><font color="#b9daff">Poverty Vs. Prisons</font></p1>
-<br>
-<p2><font color="#b9daff">This map shows the correlation between county-wide poverty rates and prisons in the state of Pennsylvania, focusing on Department of Corrections state correctional institutions (SCI).</font></p2>
-<br>
-<br>
-
+<font face="Oswald" size="400" color="#000000">Mapping Poverty in Pennsylvania</font> 
+<br><font face="Oxygen" size="200" color="#000000">Poverty rates in every PA county, in one map.</font><br><br>
 		
 	<div id="map"></div>
 	
@@ -93,7 +86,7 @@
 		L.marker([40.469700, -80.040041]).bindPopup('SCI Pittsburgh').addTo(prison);
 		L.marker([41.185477, -78.144325]).bindPopup('Quehanna Boot Camp').addTo(prison);
 		L.marker([41.187739, -76.081863]).bindPopup('SCI Retreat').addTo(prison);
-		
+
 		var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -134,12 +127,12 @@
 		
 		// get color depending on poverty rate value
 		function getColor(d) {
-			return d > 17.2 ? '#08519c' :
-			       d > 14.5  ? '#3182bd' :
-		               d > 11.8  ? '#6baed6' :
-			       d > 8.9  ? '#9ecae1' :
-			       d > 5.9   ? '#c6dbef' :
-					  '#eff3ff';
+			return d > 17.2 ? '#bd0026' :
+			       d > 14.5  ? '#f03b20' :
+		               d > 11.8  ? '#fd8d3c' :
+			       d > 8.9  ? '#fecc5c' :
+			       d > 5.9   ? '#ffffb2' :
+					  '#FFEDA0';
 		}
 	
 		function style(feature) {
